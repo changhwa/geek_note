@@ -44,7 +44,7 @@ module.exports = function(grunt) {
           cwd: __dirname,
           ignore: ['node_modules/**'],
           ext: 'js,coffee,hbs',
-          watchedFolders: ['src/**','public/**','views/**'],
+          watchedFolders: ['src/**/*','public/javascripts/**','views/**/*'],
           delay: 1000,
           legacyWatch: true
         }
