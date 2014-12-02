@@ -1,0 +1,13 @@
+node_modules
+build
+public/components
+*.iml
+.idea/
+*.swp
+.DS_Store
+.classpath
+.project
+.settings/
+.springBeans
+public/stylesheets/style.css
+.worksheet/

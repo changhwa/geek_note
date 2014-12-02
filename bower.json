@@ -1,0 +1,21 @@
+{
+  "name": "geek_note",
+  "version": "0.0.1",
+  "authors": [
+    "Changhwa Oh <changhwaoh.co@gmail.com>"
+  ],
+  "description": "Geek Note",
+  "main": "app.coffee",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jui": "~1.2.1"
+  }
+}
