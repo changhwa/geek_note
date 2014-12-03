@@ -23,6 +23,8 @@
     "require"
   ],
   "globals" :{
-    "alert" : false
+    "alert" : false,
+    "jui" : true,
+    "JuiEvent" : true
   }
 }
