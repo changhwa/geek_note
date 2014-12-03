@@ -37,18 +37,18 @@ describe "Markdown Parser Test", ->
     done()
     return
 
-  # it "should save document body", (done) ->
-  #   docPath = parser.save("테스트", "<p>테스트<p>")
-  #   docPath.should.containEql "/store/"
-  #   done()
-  #   return
-  #
-  # it "should save document body after markdown parsing", (done) ->
-  #   @timeout 1000
-  #   h1 = parser.parse(markdownTestStr)
-  #   docPath = parser.save(markdownTestStr, h1)
-  #   docPath.should.containEql "/store/"
-  #   done()
-  #   return
+  it "should save document body", (done) ->
+    docPath = parse.save("테스트", "<p>테스트<p>")
+    docPath.should.containEql "/store/"
+    done()
+    return
+
+  it "should save document body after markdown parsing", (done) ->
+    @timeout 1000
+    h1 = parse.parse(markdownTestStr)
+    docPath = parse.save(markdownTestStr, h1)
+    docPath.should.containEql "/store/"
+    done()
+    return
 
   return
