@@ -6,3 +6,27 @@ body {
 a {
   color: #00B7FF;
 }
+
+.editor-mode {
+  float: left;
+  margin-right: 20px;
+}
+
+.preview_common (@widthVal) {
+  height: 657px !important;
+  margin: 0px;
+  width: @widthVal;
+  resize:none;
+}
+
+.preview {
+  .preview_common(425px)
+}
+
+.no-preview {
+  .preview_common(850px)
+}
+
+.no-view{
+  display: none;
+}

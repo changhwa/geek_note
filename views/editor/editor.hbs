@@ -1,0 +1,18 @@
+<div id="editor">
+  <div>
+    <input id="previewYn" type="checkbox"> Preview
+  </div>
+  <div id="editorMode" style="float: left; margin-right: 20px;">
+    <textarea id="editorView" class="input input-rect no-preview"></textarea>
+  </div>
+  <div id= "previewMode" style="display:none;">
+    <div id="previewView" class="preview input input-rect"></div>
+  </div>
+</div>
+<script>
+  $(document).ready(
+    function(){
+      Editor.init();
+    }
+  )
+</script>
