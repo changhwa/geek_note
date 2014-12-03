@@ -82,7 +82,7 @@ module.exports = function(grunt) {
             'node_modules/should/should.min.js'
           ]
         },
-        src: ['test/**/*.js']
+        src: ['test/**/*.js','test/**/*.coffee']
       }
     }
 
