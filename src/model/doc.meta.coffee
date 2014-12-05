@@ -20,4 +20,5 @@ module.exports = (sequelize, DataTypes) ->
     timestamps: false
     tableName: "doc_meta"
   )
+  docMeta.sync(force: true)
   docMeta

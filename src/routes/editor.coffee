@@ -1,5 +1,6 @@
 express = require("express")
-Parser = require("../../src/lib/parser")
+parse = require("../../src/lib/parser")
+Document = require("../../src/lib/document")
 router = express.Router()
 
 # GET home page.
@@ -12,11 +13,10 @@ router.post "/preview", (req,res) ->
   res.send {html : parse.parse req.body.content}
 
 router.post "/save", (req,res) ->
-  parse = new Parser
-  markdownContent = req.body.content
-  htmlContent = parse.parse(markdownContent)
-  docPath = parse.save(markdownContent, htmlContent)
-  # TODO : 예외처리가 필요한데..
-  res.send {status: 'OK'}
+  doc = new Document
+  data = {}
+  data.doc_content = req.body.content
+  doc.saveDoc data, () ->
+    res.send {status: 'OK'}
 
 module.exports = router
