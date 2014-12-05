@@ -16,12 +16,12 @@ marked.setOptions
   smartLists: true
   smartypants: false
 
+"use strict"
 class Parser
   constructor: () ->
-  parse: (markdownString) ->
-    "use strict"
-    marked markdownString
-  save: (markdown, html) ->
+  parse: (markdownString, callback) ->
+    callback marked markdownString
+  save: (markdown, html, callback) ->
     "use strict"
     storePath = path.resolve(__dirname, "../../") + "/store/"
     storePath += moment().format("YYYY") + "/" + moment().format("MM")
@@ -32,7 +32,7 @@ class Parser
       mkdirp.sync storePath
       return
     @_save(markdown, html, fileFullPathName)
-    fileFullPathName
+    callback fileFullPathName
   _save: (markdown, html, fileFullPathName) ->
     fs.writeFileSync fileFullPathName + ".md", markdown
     fs.writeFileSync fileFullPathName + ".html", html

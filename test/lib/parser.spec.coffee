@@ -22,33 +22,27 @@ describe "Markdown Parser Test", ->
 
   it "should parse h1 tag", (done) ->
     @timeout 1000
-    h1 = parse.parse("# heading")
-    h1.should.startWith "<h1"
-    done()
-    return
+    parse.parse "# heading", (h1) ->
+      h1.should.startWith "<h1"
+      done()
 
   it "should parse complex tag", (done) ->
     @timeout 1000
-    h1 = parse.parse(markdownTestStr)
-    h1.should.containEql "<h3"
-    h1.should.containEql "<blockquote>"
-    h1.should.containEql "<li>bq3</li>"
-    h1.should.containEql "<p>"
-    done()
-    return
+    parse.parse markdownTestStr, (h1) ->
+      h1.should.containEql "<h3"
+      h1.should.containEql "<blockquote>"
+      h1.should.containEql "<li>bq3</li>"
+      h1.should.containEql "<p>"
+      done()
 
   it "should save document body", (done) ->
-    docPath = parse.save("테스트", "<p>테스트<p>")
-    docPath.should.containEql "/store/"
-    done()
-    return
+    parse.save "테스트", "<p>테스트<p>", (docPath) ->
+      docPath.should.containEql "/store/"
+      done()
 
   it "should save document body after markdown parsing", (done) ->
     @timeout 1000
-    h1 = parse.parse(markdownTestStr)
-    docPath = parse.save(markdownTestStr, h1)
-    docPath.should.containEql "/store/"
-    done()
-    return
-
-  return
+    parse.parse markdownTestStr, (h1) ->
+      parse.save markdownTestStr, h1, (docPath) ->
+        docPath.should.containEql "/store/"
+        done()
