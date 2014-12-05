@@ -18,8 +18,21 @@ describe 'Document Lib Test', () ->
       data = {}
       data.doc_title = "Test"
       data.doc_path = "/store/2014/11/20/test"
-      doc.save data, (_save) ->
+      doc.saveMeta data, (_save) ->
         doc.findByDocId
           doc_id: _save.doc_id, (_result) ->
             _result.dataValues.doc_id.should.eql _save.doc_id
             done()
+
+    it "should save document meta data before create markdown file", (done) ->
+      @timeout 1000
+      data = {}
+      data.doc_title = "Test"
+      data.doc_content = "### Test\n> 1.bq"
+      doc.saveDoc data, (_result) ->
+        result = _result.dataValues
+        result.doc_title.should.eql data.doc_title
+        result.doc_path.should.be.ok
+        doc.findByDocId doc_id: result.doc_id, (_findResult) ->
+          _findResult.dataValues.doc_id.should.eql result.doc_id
+          done()
