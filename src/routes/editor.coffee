@@ -1,5 +1,5 @@
 express = require("express")
-parse = require("../../src/lib/parser")
+Parser = require("../../src/lib/parser")
 Document = require("../../src/lib/document")
 router = express.Router()
 
@@ -10,7 +10,8 @@ router.get "/", (req, res) ->
 
 router.post "/preview", (req,res) ->
   parse = new Parser
-  res.send {html : parse.parse req.body.content}
+  parse.parse req.body.content, (_html) ->
+    res.send {html: _html}
 
 router.post "/save", (req,res) ->
   doc = new Document
