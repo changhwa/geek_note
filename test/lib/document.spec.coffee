@@ -10,9 +10,14 @@ doc = new Document
 
 describe 'Document Lib Test', () ->
   describe 'Document Meta Data Test', () ->
+
     before (done) ->
       model.docMeta.sync(force: true).then ->
         done()
+    after (done) ->
+      model.docMeta.drop(force: true, cascade: false).then () ->
+        done()
+
     it "should save document meta data", (done) ->
       @timeout 1000
       data = {}
