@@ -15,6 +15,9 @@ module.exports = (sequelize, DataTypes) ->
     doc_version:
       type: DataTypes.INTEGER
       defaultValue: "1"
+
+    doc_summary
+      type: DataTypes.STRING
   ,
     underscored: true
     timestamps: false
