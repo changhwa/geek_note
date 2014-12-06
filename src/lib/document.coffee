@@ -17,5 +17,8 @@ class Document
     docModel.find(where: doc_id: data.doc_id)
     .then (_doc) ->
       callback(_doc)
+  getDocList: (callback) ->
+    docModel.findAll().then (_docList) ->
+      callback(_docList)
 
 module.exports = Document
