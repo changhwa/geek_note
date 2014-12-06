@@ -24,7 +24,7 @@ class Editor
     getPreview = (callback) ->
       $.ajax
         type: 'POST'
-        url: '/editor/preview',
+        url: '/document/preview',
         data: {content : $('#editorView').val()},
         dataType: 'json',
         success: (result) ->
@@ -39,7 +39,7 @@ class Editor
     saveDocument: () ->
       $.ajax
         type: 'POST'
-        url: '/editor/save'
+        url: '/document/save'
         data: {content : $('#editorView').val()},
         dataType: 'json'
         success: (result) ->

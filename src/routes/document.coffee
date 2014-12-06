@@ -5,7 +5,7 @@ router = express.Router()
 
 # GET home page.
 router.get "/", (req, res) ->
-  res.render "editor/editor"
+  res.render "document/editor"
   return
 
 router.post "/preview", (req,res) ->
