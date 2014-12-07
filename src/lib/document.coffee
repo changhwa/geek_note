@@ -1,5 +1,6 @@
 docModel = require("../model").docMeta
 Parser = require("./parser")
+S = require('string')
 
 class Document
   constructor: () ->
@@ -7,8 +8,10 @@ class Document
     parse = new Parser
     @saveMeta saveDocumentData, () ->
       parse.parse saveDocumentData.doc_content, (_markupData) ->
+        saveDocumentData.markup = _markupData
         parse.save _markupData, saveDocumentData.doc_content, (_path) ->
           saveDocumentData.doc_path = _path
+          saveDocumentData.doc_summary = S(S(saveDocumentData.markup).stripTags().s).replaceAll('\n',' ').s
           Document::saveMeta saveDocumentData, callback
   saveMeta: (data, callback) ->
     docModel.build(data).save().then (_result) ->

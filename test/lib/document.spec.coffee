@@ -43,6 +43,7 @@ describe 'Document Lib Test', () ->
         result.doc_path.should.be.ok
         doc.findByDocId doc_id: result.doc_id, (_findResult) ->
           _findResult.dataValues.doc_id.should.eql result.doc_id
+          _findResult.dataValues.doc_summary.should.be.containEql 'Test'
           done()
 
     it "should have Five document ", (done) ->
