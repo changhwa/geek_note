@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) ->
       type: DataTypes.INTEGER
       defaultValue: "1"
 
-    doc_summary
+    doc_summary:
       type: DataTypes.STRING
   ,
     underscored: true
