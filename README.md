@@ -12,7 +12,7 @@
 
 1. 0.0.1
   - Markdown
-    - [ ] marked -> remarkable
+    - [x] marked -> remarkable
     - [x] 글 작성 후 html로 저장
     - [x] 에디터영역만들기
     - [x] 글 메타정보 저장

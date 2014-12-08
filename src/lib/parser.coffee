@@ -1,26 +1,17 @@
-marked = require("marked")
-renderer = new marked.Renderer()
+Remarkable = require('remarkable');
+md = new Remarkable('full');
 path = require('path')
 fs = require('fs')
 mkdirp = require('mkdirp')
 uuid = require('node-uuid')
 moment = require('moment')
 
-marked.setOptions
-  renderer: renderer
-  gfm: true
-  tables: true
-  breaks: false
-  pedantic: false
-  sanitize: true
-  smartLists: true
-  smartypants: false
 
 "use strict"
 class Parser
   constructor: () ->
   parse: (markdownString, callback) ->
-    callback marked markdownString
+    callback md.render markdownString
   save: (markdown, html, callback) ->
     "use strict"
     storePath = path.resolve(__dirname, "../../") + "/store/"
