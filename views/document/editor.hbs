@@ -1,0 +1,20 @@
+<div id="editor">
+  <div>
+    <input id="previewYn" type="checkbox"> Preview
+    <!-- TODO : 차후에는 단축키 (cmd + s) 나 메뉴에서 저장버튼 클릭시 저장되도록 함--> 
+    <button id="tempSaveBtn" class="btn btn-mini btn-gray">Temp Save</button>
+  </div>
+  <div id="editorMode" style="float: left; margin-right: 20px;">
+    <textarea id="editorView" class="input input-rect no-preview"></textarea>
+  </div>
+  <div id= "previewMode" style="display:none;">
+    <div id="previewView" class="preview input input-rect"></div>
+  </div>
+</div>
+<script>
+  $(document).ready(
+    function(){
+      Editor.init();
+    }
+  )
+</script>

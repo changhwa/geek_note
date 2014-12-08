@@ -44,7 +44,8 @@ module.exports = function(grunt) {
           cwd: __dirname,
           ignore: ['node_modules/**'],
           ext: 'js,coffee,hbs',
-          watchedFolders: ['src/**/*','public/javascripts/**','views/**/*'],
+          //watchedFolders: ['src/**/*','public/javascripts/**','views/**/*'],
+          watch: ['**/*'],
           delay: 1000,
           legacyWatch: true
         }
@@ -82,7 +83,7 @@ module.exports = function(grunt) {
             'node_modules/should/should.min.js'
           ]
         },
-        src: ['test/**/*.js']
+        src: ['test/**/*.js','test/**/*.coffee']
       }
     }
 

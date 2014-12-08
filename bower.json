@@ -16,6 +16,7 @@
     "tests"
   ],
   "dependencies": {
-    "jui": "~1.2.1"
+    "jui": "~1.2.1",
+    "handlebars": "~2.0.0"
   }
 }

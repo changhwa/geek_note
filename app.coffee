@@ -5,6 +5,7 @@ logger = require("morgan")
 cookieParser = require("cookie-parser")
 bodyParser = require("body-parser")
 routes = require("./src/routes/index")
+editor = require("./src/routes/document")
 app = express()
 
 # view engine setup
@@ -20,7 +21,11 @@ app.use cookieParser()
 app.use require("less-middleware")(path.join(__dirname, "public"))
 app.use express.static(path.join(__dirname, "public"))
 app.use '/assets', express.static(path.join(__dirname, "build"))
+
+# route
 app.use "/", routes
+app.use "/document", editor
+
 
 # catch 404 and forward to error handler
 app.use (req, res, next) ->
