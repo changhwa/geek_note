@@ -11,3 +11,5 @@ public/components
 .springBeans
 public/stylesheets/style.css
 .worksheet/
+store/
+db.db
