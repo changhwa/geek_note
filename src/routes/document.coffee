@@ -20,4 +20,13 @@ router.post "/save", (req,res) ->
   doc.saveDoc data, () ->
     res.send {status: 'OK'}
 
+router.get "/list", (req,res) ->
+  res.render "document/list"
+
+router.get "/article", (req,res) ->
+  doc = new Document
+  doc.getDocList (_result) ->
+    res.send {list: _result}
+
+
 module.exports = router
