@@ -49,6 +49,6 @@ describe 'Document Lib Test', () ->
     it "should have Five document ", (done) ->
       @timeout 1000
       doc.getDocList (_docList) ->
-        _docList.length.should.be.eql(5)
+        _docList.length.should.be.eql(4)
         _docList[0].dataValues.doc_title.should.be.eql('Test1')
         done()
