@@ -12,4 +12,5 @@ public/components
 public/stylesheets/style.css
 .worksheet/
 store/
+test/store/
 db.db
