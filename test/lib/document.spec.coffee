@@ -52,3 +52,17 @@ describe 'Document Lib Test', () ->
         _docList.length.should.be.eql(4)
         _docList[0].dataValues.doc_title.should.be.eql('Test1')
         done()
+
+    it "should update document" , (done) ->
+      data = {}
+      data.doc_title = "Test"
+      data.doc_content = "### Test\n> 1.bq"
+      doc.saveDoc data, (_result) ->
+        updateData = _result.dataValues
+        console.log updateData
+        updateData.doc_title = 'Test2'
+        updateData.doc_content = "### Test\n> 1.bq\n2.bq"
+        doc.updateDoc updateData, (_updateResult) ->
+          _updateResult.dataValues.doc_summary.should.be.containEql "2.bq"
+          _updateResult.dataValues.doc_title.should.be.eql "Test"
+          done()
