@@ -5,13 +5,16 @@ S = require('string')
 class Document
   constructor: () ->
   saveDoc: (saveDocumentData, callback) ->
+    _parseReturnPathAndSummary saveDocumentData, (_saveDocuemtData) ->
+      Document::saveMeta _saveDocuemtData, callback
+  _parseReturnPathAndSummary = (saveDocumentData, callback) ->
     parse = new Parser
     parse.parse saveDocumentData.doc_content, (_markupData) ->
       saveDocumentData.markup = _markupData
       parse.save _markupData, saveDocumentData.doc_content, (_path) ->
         saveDocumentData.doc_path = _path
         saveDocumentData.doc_summary = S(saveDocumentData.markup).stripTags().replaceAll('\n',' ').s
-        Document::saveMeta saveDocumentData, callback
+        callback saveDocumentData
   saveMeta: (data, callback) ->
     docModel.build(data).save().then (_result) ->
       callback(_result)
