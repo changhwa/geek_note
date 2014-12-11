@@ -2,8 +2,27 @@
 require('coffee-script/register');
 var debug = require('debug')('geek_note');
 var app = require('../app');
+var path = require('path');
+var fs = require('fs');
+var gitfs = require('gift');
+
 
 app.set('port', process.env.PORT || 3000);
+var storePath = path.resolve(__dirname, "..")+"/store";
+
+
+fs.exists (storePath, function(exists){
+  if (!exists){
+    fs.mkdir(storePath, function(err) {
+      if(err)
+        throw err;
+      gitfs.init(storePath, false, function(err, repo){
+        console.log (repo)
+      });
+    })
+  }
+});
+
 
 var server = app.listen(app.get('port'), function() {
   debug('Express server listening on port ' + server.address().port);
