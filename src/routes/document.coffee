@@ -17,8 +17,13 @@ router.post "/save", (req,res) ->
   doc = new Document
   data = {}
   data.doc_content = req.body.content
-  doc.saveDoc data, () ->
-    res.send {status: 'OK'}
+  doc.saveDoc data, (_saveDoc) ->
+    res.send {status: 'OK', doc: _saveDoc}
+
+router.put "/update/:docId", (req,res) ->
+  doc = new Document
+  doc.updateDoc req.body, (_updateDoc) ->
+    res.send {status: 'OK', doc: _updateDoc}
 
 router.get "/list", (req,res) ->
   res.render "document/list"

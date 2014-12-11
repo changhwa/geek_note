@@ -18,7 +18,11 @@ class Editor
         if e.which == 13 # enter key 입력시 랜더링하도록 함
           Editor::event().realTimePreview()
     .on 'click','#tempSaveBtn', ->
-      Editor::event().saveDocument()
+      console.log $("#docId")
+      if $("#docId").val() == ''
+        Editor::event().saveDocument()
+      else
+        Editor::event().updateDocument()
 
   event: () ->
     getPreview = (callback) ->
@@ -44,10 +48,24 @@ class Editor
         dataType: 'json'
         success: (result) ->
           if result.status == "OK"
+            $("#docId").val(result.doc.doc_id)
             JuiEvent.notify('Success','저장되었습니다.','')
           else
             JuiEvent.notify('Fail','실패하였습니다','')
 
+    updateDocument: () ->
+      docId = $("#docId").val()
+      $.ajax
+        type: 'PUT'
+        url: '/document/update/'+ docId
+        data: {content : $('#editorView').val(), doc_id : docId},
+        dataType: 'json'
+        success: (result) ->
+          if result.status == "OK"
+            $("#docId").val(result.doc.doc_id)
+            JuiEvent.notify('Success','저장되었습니다.','')
+          else
+            JuiEvent.notify('Fail','실패하였습니다','')
   showPreview = () ->
     $("#editorView")
     .removeClass "no-preview"
