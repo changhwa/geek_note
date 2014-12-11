@@ -18,7 +18,7 @@ class Document
     parse = new Parser
     parse.parse saveDocumentData.doc_content, (_markupData) ->
       saveDocumentData.markup = _markupData
-      if typeof doc_id != "undefined" && saveDocumentData.doc_id != null
+      if typeof saveDocumentData.doc_id != "undefined" && saveDocumentData.doc_id != null
         parse.update _markupData, saveDocumentData.doc_content, saveDocumentData.doc_path, (_path) ->
           _parseSaveAfterCallback saveDocumentData, _path, callback
       else

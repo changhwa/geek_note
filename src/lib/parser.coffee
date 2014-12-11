@@ -12,12 +12,12 @@ class Parser
   storePath = path.resolve(__dirname, "../../") + "/store/"
   storePath += moment().format("YYYY") + "/" + moment().format("MM")
   storePath += "/" + moment().format("DD")
-  fileName = uuid.v4()
 
   constructor: () ->
   parse: (markdownString, callback) ->
     callback md.render markdownString
   save: (markdown, html, callback) ->
+    fileName = uuid.v4()
     fileFullPathName = storePath + "/" + fileName
     mkdirp.sync storePath, ->
       mkdirp.sync storePath
@@ -26,7 +26,7 @@ class Parser
     callback fileFullPathName
   update: (markdown, html, fileFullPathName, callback) ->
     @_save markdown, html, fileFullPathName
-    callback filePullPathName
+    callback fileFullPathName
   _save: (markdown, html, fileFullPathName) ->
     fs.writeFileSync fileFullPathName + ".md", markdown
     fs.writeFileSync fileFullPathName + ".html", html
