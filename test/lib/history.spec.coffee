@@ -4,6 +4,7 @@ path = require('path')
 gitfs = require('gift')
 fs = require('fs')
 rimraf = require('rimraf')
+model = require("../../src/model")
 
 Document = require("../../src/lib/document")
 doc = new Document
@@ -25,6 +26,9 @@ describe 'Document History Test', () ->
 
     # store 폴더를 저장소로 만든다
     gitfs.init storePath, false, (err, repo) ->
+      return
+
+    model.docMeta.sync(force: true).then ->
       done()
 
   after (done) ->
@@ -34,6 +38,7 @@ describe 'Document History Test', () ->
     rimraf storePath, (err) ->
       if err
         throw err
+    model.docMeta.drop(force: true, cascade: false).then () ->
       done()
 
   it '풀경로로 부터 파일이름과 경로를 분리한다', (done) ->
