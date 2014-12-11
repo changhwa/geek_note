@@ -59,7 +59,6 @@ describe 'Document Lib Test', () ->
       data.doc_content = "### Test\n> 1.bq"
       doc.saveDoc data, (_result) ->
         updateData = _result.dataValues
-        console.log updateData
         updateData.doc_title = 'Test2'
         updateData.doc_content = "### Test\n> 1.bq\n2.bq"
         doc.updateDoc updateData, (_updateResult) ->
