@@ -22,6 +22,9 @@ module.exports = (sequelize, DataTypes) ->
     underscored: true
     timestamps: false
     tableName: "doc_meta"
+    "classMethods" :
+      "associate" :  (models) ->
+        models.docMeta.hasMany models.historyMeta
   )
-  # docMeta.sync(force: true)
+  docMeta.sync(force: true)
   docMeta
