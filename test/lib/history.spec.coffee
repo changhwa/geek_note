@@ -75,5 +75,12 @@ describe 'Document History Test', () ->
             commitId.should.not.eql _updateCommit.id
             done()
 
-
-
+  it '문서를 저장한 후 DB 저장한다', (done) ->
+    data = {}
+    data.doc_title = "Test"
+    data.doc_content = "### Test\n> 1.bq"
+    doc.saveDoc data, (_result) ->
+      his.save _result, (_commit) ->
+        model.historyMeta.build(history_commit_id: _commit.id, doc_id: _result.dataValues.doc_id).save().then (_saveResult) ->
+          _saveResult.dataValues.history_commit_id.should.be.eql _commit.id
+          done()
